@@ -8,7 +8,7 @@ type LRUCache struct {
 
 func Constructor(capacity int) LRUCache {
 	container := LRUCache{
-		Cache: map[int]*Node{},
+		Cache:    map[int]*Node{},
 		Capacity: capacity,
 		Head:     NewNode(0, 0),
 		Tail:     NewNode(0, 0),
@@ -78,8 +78,8 @@ func NewNode(k, v int) *Node {
 	return &Node{Key: k, Value: v}
 }
 
-func main(){
-	LRU:=Constructor(1)
-	LRU.Put(2,1)
+func main() {
+	LRU := Constructor(1)
+	LRU.Put(2, 1)
 	LRU.Get(2)
 }
