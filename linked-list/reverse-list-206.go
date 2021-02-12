@@ -1,9 +1,4 @@
-package reverse_list_206
-
-type ListNode struct {
-	Val  int
-	Next *ListNode
-}
+package linked_list
 
 // 递归方式链表反转
 func reverseListRecur(head *ListNode) *ListNode {

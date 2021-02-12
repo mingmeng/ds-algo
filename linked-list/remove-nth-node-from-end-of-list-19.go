@@ -1,9 +1,4 @@
-package remove_nth_node_from_end_of_list_19
-
-type ListNode struct {
-	Val  int
-	Next *ListNode
-}
+package linked_list
 
 func removeNthFromEnd(head *ListNode, n int) *ListNode {
 	preHead := &ListNode{

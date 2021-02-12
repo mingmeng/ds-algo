@@ -1,9 +1,4 @@
-package linked_list_cycle_141
-
-type ListNode struct {
-	Val  int
-	Next *ListNode
-}
+package linked_list
 
 // 快慢指针原理
 // https://leetcode-cn.com/problems/linked-list-cycle/solution/xiang-jie-wei-shi-yao-yong-yi-bu-liang-b-i6xo/

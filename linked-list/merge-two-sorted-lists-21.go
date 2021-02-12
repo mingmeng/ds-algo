@@ -1,9 +1,4 @@
-package merge_two_sorted_lists_21
-
-type ListNode struct {
-	Val  int
-	Next *ListNode
-}
+package linked_list
 
 func mergeTwoLists(l1 *ListNode, l2 *ListNode) *ListNode {
 	preHead := &ListNode{}
