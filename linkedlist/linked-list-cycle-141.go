@@ -1,4 +1,4 @@
-package linked_list
+package linkedlist
 
 // 快慢指针原理
 // https://leetcode-cn.com/problems/linked-list-cycle/solution/xiang-jie-wei-shi-yao-yong-yi-bu-liang-b-i6xo/

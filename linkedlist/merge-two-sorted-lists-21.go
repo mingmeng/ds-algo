@@ -1,4 +1,4 @@
-package linked_list
+package linkedlist
 
 func mergeTwoLists(l1 *ListNode, l2 *ListNode) *ListNode {
 	preHead := &ListNode{}
@@ -24,4 +24,3 @@ func mergeTwoLists(l1 *ListNode, l2 *ListNode) *ListNode {
 
 	return result.Next
 }
-

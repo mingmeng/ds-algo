@@ -1,4 +1,4 @@
-package linked_list
+package linkedlist
 
 func middleNode(head *ListNode) *ListNode {
 	fast := head

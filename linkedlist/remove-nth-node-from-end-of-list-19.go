@@ -1,4 +1,4 @@
-package linked_list
+package linkedlist
 
 func removeNthFromEnd(head *ListNode, n int) *ListNode {
 	preHead := &ListNode{

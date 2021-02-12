@@ -1,4 +1,4 @@
-package linked_list
+package linkedlist
 
 // 递归方式链表反转
 func reverseListRecur(head *ListNode) *ListNode {
