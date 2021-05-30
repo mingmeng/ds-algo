@@ -2,6 +2,8 @@
 
 [数据结构与算法之美](https://time.geekbang.org/column/intro/126)
 
+[leetcode部分](./leetcode-ps.md)
+
 ## 数组
 - [ ] 实现一个支持动态扩容的数组
 
