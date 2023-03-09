@@ -20,52 +20,52 @@ func Constructor(capacity int) LRUCache {
 	return container
 }
 
-func (this *LRUCache) Get(key int) int {
-	if node, ok := this.Cache[key]; ok {
-		this.moveToHead(node)
+func (c *LRUCache) Get(key int) int {
+	if node, ok := c.Cache[key]; ok {
+		c.moveToHead(node)
 		return node.Value
 	}
 	return -1
 
 }
 
-func (this *LRUCache) Put(key int, value int) {
-	if node, ok := this.Cache[key]; ok {
+func (c *LRUCache) Put(key int, value int) {
+	if node, ok := c.Cache[key]; ok {
 		node.Value = value
-		this.moveToHead(node)
+		c.moveToHead(node)
 	} else {
 		newNode := NewNode(key, value)
-		this.addToHead(newNode)
-		this.Cache[key] = newNode
-		this.Size++
-		if this.Size > this.Capacity {
-			deletedNode := this.removeTail()
-			delete(this.Cache, deletedNode.Key)
-			this.Size--
+		c.addToHead(newNode)
+		c.Cache[key] = newNode
+		c.Size++
+		if c.Size > c.Capacity {
+			deletedNode := c.removeTail()
+			delete(c.Cache, deletedNode.Key)
+			c.Size--
 		}
 	}
 }
 
-func (this *LRUCache) addToHead(node *Node) {
-	node.Pre = this.Head
-	node.Next = this.Head.Next
-	this.Head.Next.Pre = node
-	this.Head.Next = node
+func (c *LRUCache) addToHead(node *Node) {
+	node.Pre = c.Head
+	node.Next = c.Head.Next
+	c.Head.Next.Pre = node
+	c.Head.Next = node
 }
 
-func (this *LRUCache) moveToHead(node *Node) {
-	this.removeNode(node)
-	this.addToHead(node)
+func (c *LRUCache) moveToHead(node *Node) {
+	c.removeNode(node)
+	c.addToHead(node)
 }
 
-func (this *LRUCache) removeNode(node *Node) {
+func (c *LRUCache) removeNode(node *Node) {
 	node.Pre.Next = node.Next
 	node.Next.Pre = node.Pre
 }
 
-func (this *LRUCache) removeTail() *Node {
-	node := this.Tail.Pre
-	this.removeNode(node)
+func (c *LRUCache) removeTail() *Node {
+	node := c.Tail.Pre
+	c.removeNode(node)
 	return node
 }
 
