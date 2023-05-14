@@ -1,43 +1,34 @@
 package stack
 
-type MyQueue struct {
+type CQueue struct {
 	InStack  []int
 	OutStack []int
 }
 
-func Constructor() MyQueue {
-	return MyQueue{
+func Constructor() CQueue {
+	return CQueue{
 		InStack:  make([]int, 0),
 		OutStack: make([]int, 0),
 	}
 }
 
-func (this *MyQueue) Push(x int) {
-	this.InStack = append(this.InStack, x)
+func (this *CQueue) AppendTail(value int) {
+	this.InStack = append(this.InStack, value)
 }
 
-func (this *MyQueue) Pop() int {
-	if len(this.OutStack) > 0 {
-		newLen := len(this.OutStack) - 1
-		result := this.OutStack[newLen]
-		this.OutStack = this.OutStack[:newLen]
-		return result
-	} else {
-		for i := len(this.InStack) - 1; i > 0; i-- {
+func (this *CQueue) DeleteHead() int {
+	if len(this.OutStack) == 0 {
+		for i := len(this.InStack); i > 0; i-- {
 			this.OutStack = append(this.OutStack, this.InStack[i])
 		}
-		result := this.InStack[0]
+		result := this.OutStack[0]
 		this.InStack = make([]int, 0)
 		return result
 	}
-}
-
-func (this *MyQueue) Peek() int {
-	result := this.Pop()
-	this.OutStack = append(this.OutStack, result)
+	length := len(this.OutStack)
+	// 先拿到结果
+	result := this.OutStack[length-1]
+	// 将tail pop出去
+	this.OutStack = this.OutStack[0 : length-1]
 	return result
-}
-
-func (this *MyQueue) Empty() bool {
-	return len(this.InStack) == 0 && len(this.OutStack) == 0
 }
