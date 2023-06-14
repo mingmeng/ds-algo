@@ -1,26 +1,27 @@
 package arraylist
 
+import "math"
+
 func maxSubArray(nums []int) int {
-	if len(nums) == 1 {
+	if len(nums) == 0 {
+		return 0
+	} else if len(nums) == 1 {
 		return nums[0]
 	}
 
-	dp := make([]int, len(nums))
+	result := math.MinInt64
 
-	dp[0] = nums[0]
+	count := 0
+	for i := 0; i < len(nums); i++ {
+		count += nums[i]
 
-	for i := 1; i < len(nums); i++ {
-		if dp[i-1] >= 0 {
-			dp[i] = dp[i-1] + nums[i]
-		} else {
-			dp[i] = nums[i]
+		if count > result {
+			result = count
+		}
+		if count < 0 {
+			count = 0
 		}
 	}
 
-	maxSum := dp[0]
-	for i := 1; i < len(dp); i++ {
-		maxSum = max(maxSum, dp[i])
-	}
-
-	return maxSum
+	return result
 }
