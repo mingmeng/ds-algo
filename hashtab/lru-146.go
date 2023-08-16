@@ -1,5 +1,7 @@
 package main
 
+import "math"
+
 type LRUCache struct {
 	Cache          map[int]*Node
 	Capacity, Size int
@@ -82,4 +84,100 @@ func main() {
 	LRU := Constructor(1)
 	LRU.Put(2, 1)
 	LRU.Get(2)
+}
+
+func maxSubArray(nums []int) int {
+	var max int
+
+	max = nums[0]
+
+	for i := 1; i < len(nums); i++ {
+		nums[i] = max(nums[i], nums[i-1]+nums[i])
+
+		if nums[i] > max {
+			max = nums[i]
+		}
+
+	}
+
+	return max
+}
+
+func max(a, b int) int {
+	if a > b {
+		return a
+	}
+	return b
+}
+
+func sortArray(nums []int) []int {
+	var sort func(nums []int, left, right int) []int
+	sort = func(nums []int, left, right int) []int {
+		if left > right {
+			return nil
+		}
+		pivot := nums[left]
+		i, j := left, right
+		for i < j {
+			for i < j && nums[j] >= pivot {
+				j--
+			}
+			for i < j && nums[i] <= pivot {
+				i++
+			}
+
+			nums[i], nums[j] = nums[j], nums[i]
+		}
+		nums[i], nums[left] = nums[left], nums[i]
+		sort(nums, left, i-1)
+		sort(nums, i+1, right)
+		math.MaxInt64
+		return nums
+	}
+	return sort(nums, 0, len(nums)-1)
+}
+
+func coinChange(coins []int, amount int) int {
+	memo := make([]int, (amount)+1)
+	for i := 0; i < len(memo); i++ {
+		memo[i] = -100
+	}
+
+	var dp func(coins []int, amount int) int
+	dp = func(coins []int, amount int) int {
+		if amount == 0 {
+			return 0
+		} else if amount < 0 {
+			return -1
+		} else if memo[amount] != -100 {
+			return memo[amount]
+		}
+
+		result := math.MaxInt
+		for _, coin := range coins {
+
+			subAmount := dp(coins, amount-coin)
+			if subAmount == -1 {
+				continue
+			}
+
+			result = min(result, subAmount+1)
+		}
+
+		if result == math.MaxInt {
+			memo[amount] = -1
+		} else {
+			memo[amount] = result
+		}
+		return memo[amount]
+	}
+
+	return dp(coins, amount)
+}
+
+func min(a, b int) int {
+	if a < b {
+		return a
+	}
+	return b
 }
